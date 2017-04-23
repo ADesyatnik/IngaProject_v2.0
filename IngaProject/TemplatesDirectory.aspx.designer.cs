@@ -7,9 +7,9 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace IngaProject.Account {
+namespace IngaProject {
     
     
-    public partial class Cabinet {
+    public partial class TemplatesDirectory {
     }
 }

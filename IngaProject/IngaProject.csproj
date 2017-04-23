@@ -185,6 +185,8 @@
     <Content Include="About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Cabinet.aspx" />
+    <Content Include="Account\Cabinet_AllFiles.aspx" />
+    <Content Include="Account\Cabinet_UploadFiles.aspx" />
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
     <Content Include="Account\Lockout.aspx" />
@@ -199,6 +201,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="avatar[2].jpg" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -245,6 +248,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="TemplatesDirectory.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -273,6 +277,20 @@
     </Compile>
     <Compile Include="Account\Cabinet.aspx.designer.cs">
       <DependentUpon>Cabinet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Cabinet_AllFiles.aspx.cs">
+      <DependentUpon>Cabinet_AllFiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Cabinet_AllFiles.aspx.designer.cs">
+      <DependentUpon>Cabinet_AllFiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Cabinet_UploadFiles.aspx.cs">
+      <DependentUpon>Cabinet_UploadFiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Cabinet_UploadFiles.aspx.designer.cs">
+      <DependentUpon>Cabinet_UploadFiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Confirm.aspx.cs">
       <DependentUpon>Confirm.aspx</DependentUpon>
@@ -402,6 +420,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ReadyFile.cs" />
     <Compile Include="Models\SourceFiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -419,6 +438,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="TemplatesDirectory.aspx.cs">
+      <DependentUpon>TemplatesDirectory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TemplatesDirectory.aspx.designer.cs">
+      <DependentUpon>TemplatesDirectory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -47,6 +47,7 @@ namespace IngaProject.Models
     {
         
         public DbSet<SourceFile> SourceFiles { get; set; }
+        public DbSet<ReadyFile> ReadyFiles { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

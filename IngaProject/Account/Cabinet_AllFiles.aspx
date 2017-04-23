@@ -1,10 +1,7 @@
-﻿<%@ Page Title="Личный кабинет" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Cabinet.aspx.cs" Inherits="IngaProject.Account.Cabinet" %>
-
+﻿<%@ Page Title="Личный кабинет - Все файлы" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Cabinet_AllFiles.aspx.cs" Inherits="IngaProject.Account.Cabinet" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-       <h2><%: Title %>.</h2>
-        <div class ="container">
-                    <h4>Ваши последние документы:</h4>
-               
+    <h2><%: Title %>.</h2>
+    <h4>Ваши документы:</h4>     
         <%
                 foreach (IngaProject.Models.ReadyFile file in DBFile())
                 {
@@ -17,8 +14,4 @@
                         file.Name, file.Date, file.UrlFile));
                 }
             %>
-                    <a href="Cabinet_AllFiles">Все файлы</a>
-            </div>
-    <a href ="Cabinet_UploadFiles">Загрузить файлы на компиляцию</a>        
-
 </asp:Content>
