@@ -315,7 +315,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #d8d8eb;
 }
 
 input,
@@ -2051,7 +2051,7 @@ fieldset[disabled] .btn {
 .btn-default {
   color: #333333;
   background-color: #ffffff;
-  border-color: #cccccc;
+  border-color: #557;
 }
 
 .btn-default:hover,
@@ -2060,8 +2060,8 @@ fieldset[disabled] .btn {
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
   color: #333333;
-  background-color: #ebebeb;
-  border-color: #adadad;
+  background-color: #eeeff8;
+  border-color: #000;
 }
 
 .btn-default:active,
@@ -2091,8 +2091,8 @@ fieldset[disabled] .btn-default.active {
 
 .btn-primary {
   color: #ffffff;
-  background-color: #428bca;
-  border-color: #357ebd;
+  background-color: #235;
+  border-color: #557;
 }
 
 .btn-primary:hover,
@@ -2101,8 +2101,8 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #3276b1;
-  border-color: #285e8e;
+  background-color: #3b517f;
+  border-color: #1d3952;
 }
 
 .btn-primary:active,
@@ -3244,7 +3244,7 @@ input[type="button"].btn-block {
   margin: 2px 0 0;
   font-size: 14px;
   list-style: none;
-  background-color: #ffffff;
+  background-color: #e4e4f1;
   border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
@@ -3262,7 +3262,7 @@ input[type="button"].btn-block {
   height: 1px;
   margin: 9px 0;
   overflow: hidden;
-  background-color: #e5e5e5;
+  background-color: #557;
 }
 
 .dropdown-menu > li > a {
@@ -3279,7 +3279,7 @@ input[type="button"].btn-block {
 .dropdown-menu > li > a:focus {
   color: #ffffff;
   text-decoration: none;
-  background-color: #428bca;
+  background-color: #235;
 }
 
 .dropdown-menu > .active > a,
@@ -4196,6 +4196,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   padding: 15px 15px;
   font-size: 18px;
   line-height: 20px;
+  color:#fcfbf9;
 }
 
 .navbar-brand:hover,
@@ -4501,12 +4502,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+  background-color: #235;
+  border-color: #235;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #999999;
+  color:#fcfbf9;
 }
 
 .navbar-inverse .navbar-brand:hover,
@@ -4516,11 +4517,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-text {
-  color: #999999;
+  color: #999;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+  color: #bbd;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -4544,12 +4545,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-toggle {
-  border-color: #333333;
+  border-color: none;
 }
 
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #333333;
+  background-color: none;
 }
 
 .navbar-inverse .navbar-toggle .icon-bar {
@@ -4565,7 +4566,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
   color: #ffffff;
-  background-color: #080808;
+  background-color: #131b2b;
 }
 
 .navbar-inverse .navbar-nav > .dropdown > a:hover .caret {
@@ -4851,7 +4852,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .label-success {
-  background-color: #5cb85c;
+  background-color: #235;
 }
 
 .label-success[href]:hover,
@@ -4928,13 +4929,15 @@ a.list-group-item.active > .badge,
 }
 
 .jumbotron {
+  height:553px;
   padding: 30px;
   margin-bottom: 30px;
   font-size: 21px;
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background: url(/fo1.jpg) no-repeat #eee;
+
 }
 
 .jumbotron h1 {
@@ -4952,7 +4955,7 @@ a.list-group-item.active > .badge,
 
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
+    padding-top: 148px;
     padding-bottom: 48px;
   }
   .container .jumbotron {
@@ -4971,11 +4974,17 @@ a.list-group-item.active > .badge,
   max-width: 100%;
   padding: 4px;
   line-height: 1.428571429;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
+  background-color: #e4e4f1;
+  border: 1px solid #557;
   border-radius: 4px;
   -webkit-transition: all 0.2s ease-in-out;
           transition: all 0.2s ease-in-out;
+    margin: 1px;
+}
+
+.col-sm-6 .col-md-4 > .thumbnail
+{
+    background-color: #fff;
 }
 
 .thumbnail > img {
@@ -6813,4 +6822,9 @@ td.visible-print {
   td.hidden-print {
     display: none !important;
   }
+}
+
+.jumbotron > h1 {
+    color: #235;
+    text-shadow: 1px 1px 1px #000;
 }
