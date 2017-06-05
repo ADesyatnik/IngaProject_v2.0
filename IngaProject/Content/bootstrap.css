@@ -6828,3 +6828,5 @@ td.visible-print {
     color: #235;
     text-shadow: 1px 1px 1px #000;
 }
+
+.caption > p{ font-size: 12px;}

@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -21,13 +24,13 @@ namespace IngaProject.Account
         {
             using (var DB = new ApplicationDbContext())
             {
-                IEnumerable<SourceFile> Files = DB.SourceFiles;
-                foreach (var file in Files)
+                var query = from SourceFile in DB.SourceFiles
+                            where SourceFile.User == User.Identity.Name
+                            select SourceFile;
+
+                foreach (var file in query)
                 {
-                    if (file.User == Context.User.Identity.Name)
-                    {
-                        yield return file;
-                    }
+                    yield return file;
                 }
             }
 
@@ -37,80 +40,116 @@ namespace IngaProject.Account
         {
             if (FileUpload1.HasFile)
             {
-                string FileType = System.IO.Path.GetExtension(Server.HtmlEncode(FileUpload1.FileName));
-                if ((FileType == ".doc") || (FileType == ".docx") || (FileType == ".txt"))
+                string FileType = Path.GetExtension(Server.HtmlEncode(FileUpload1.FileName));
+
+                if (FileUpload1.PostedFile.ContentLength < 3100000)
                 {
-                    if (FileUpload1.PostedFile.ContentLength < 3100000)
+                    string appPath = Request.PhysicalApplicationPath + "Uploads\\" + User.Identity.Name.ToString();
+                    Directory.CreateDirectory(appPath);
+
+                    string savePath = appPath + "\\" + Server.HtmlEncode(FileUpload1.FileName);
+                    FileUpload1.SaveAs(savePath); //сохранение по адресу savePath
+
+                    SourceFile NewFile = new SourceFile() { Name = FileUpload1.FileName, Repository = appPath, User = Context.User.Identity.Name }; //формирование строки в бд
+                    using (var DB = new ApplicationDbContext())
                     {
-                        string appPath = Request.PhysicalApplicationPath;
-                        string savePath = appPath + "Uploads\\" + Server.HtmlEncode(FileUpload1.FileName);
-                        FileUpload1.SaveAs(savePath); //сохранение по адресу savePath
-                        SourceFile NewFile = new SourceFile() { Name = FileUpload1.FileName, UrlFile = savePath, User = Context.User.Identity.Name }; //формирование строки в бд
-                        var DB = new ApplicationDbContext();
                         DB.SourceFiles.Add(NewFile);
                         DB.SaveChanges(); //добавление объекта и сохранение изменений в бд
-                        UploadStatusLabel.CssClass = "label label-success";
-                        UploadStatusLabel.Text = "Файл успешно загружен";
                     }
-                    else
-                    {
-                        UploadStatusLabel.CssClass = "label label-danger";
-                        UploadStatusLabel.Text = "Файл не может быть загружен: превышен допустимый размер файла.";
-                    }
+                    UploadStatusLabel.CssClass = "label label-success";
+                    UploadStatusLabel.Text = "Файл успешно загружен";
                 }
                 else
                 {
                     UploadStatusLabel.CssClass = "label label-danger";
-                    UploadStatusLabel.Text = "Выбраный тип файла не может быть загружен.";
+                    UploadStatusLabel.Text = "Файл не может быть загружен: превышен допустимый размер файла.";
                 }
             }
         }
 
+        //protected string InLatexAsync(object sender, EventArgs e)
+        //{
+            
+        //}
+
+
         protected void UploadInProg(object sender, EventArgs e)
         {
-            using (var DB = new ApplicationDbContext())
-            {
-                IEnumerable<SourceFile> Files = UserFiles();
+            string appFolder = Request.PhysicalApplicationPath + "Uploads\\" + User.Identity.Name.ToString();
+            string appPath = appFolder + "\\main.tex";
 
-                if (Files.Count() != 0)
+            if (File.Exists(appPath)) //существует ли указанный файл
+            {
+                InProgramUploadStatusLabel.Text = "Происходит загрузка, подождите";
+
+                //Выход во внешнюю программу
+                string path = appFolder + "\\start.bat";
+
+                if (File.Exists(path)) // удалить файл, если он вдруг существует
+                    File.Delete(path);
+
+                using (FileStream fs = File.Create(path))
                 {
-                    InProgramUploadStatusLabel.Text = "Происходит загрузка, подождите";
-                    //Выход во внешнюю программу
-                    Process.Start("calc");
-                 }
-                else
-                {
-                    InProgramUploadStatusLabel.Text = "Загрузите хотя бы один документ";
+                    byte[] info = new UTF8Encoding(true).GetBytes("latexmk -pdf main.tex");
+                    fs.Write(info, 0, info.Length);
                 }
 
-                //Удаление файлов после загрузки
-                DelAllFileInDB(sender, e);
+                Process p = new Process();
+                p.StartInfo.FileName = appFolder + "\\start.bat";
+                p.Start();
+
+                Thread.Sleep(7000);
+                //конец
+
+                string pdfPath = appFolder + "\\main.pdf";
+                string readyFileTrack = Request.PhysicalApplicationPath + "CompleteFile\\" + User.Identity.Name.ToString() + "_" + DateTime.Now + ".pdf";
+                if (File.Exists(pdfPath))
+                {
+                    //перенос файла в папку CompleteFile
+                    File.Move(pdfPath, readyFileTrack);
+
+                    //формирование строки в бд
+                    ReadyFile NewFile = new ReadyFile() { Name = FileUpload1.FileName, UrlFile = readyFileTrack, User = Context.User.Identity.Name, Date = DateTime.Now };
+                    using (var DB = new ApplicationDbContext())
+                    {
+                        DB.ReadyFiles.Add(NewFile);
+                        DB.SaveChanges();
+                    }
+
+                    //Удаление директории пользователя после загрузки
+                    DelAllFileInDB(sender, e);
+
+                    InProgramUploadStatusLabel.Text = @"Документ готов, <a href = '" + NewFile.UrlFile +"'>скачать</a>";
+                }
             }
-         }
+            else
+            {
+                InProgramUploadStatusLabel.Text = "Для продолжения необходим документ с названием main.tex!";
+            }
+        }
+
+
         protected void DelAllFileInDB(object sender, EventArgs e)
         {
-            using (var DB = new ApplicationDbContext())
+            try
             {
-                var query = from SourceFile in DB.SourceFiles
-                            where SourceFile.User == User.Identity.Name
-                            select SourceFile;
+                string appPath = Request.PhysicalApplicationPath + "Uploads\\" + User.Identity.Name.ToString();
+                Directory.Delete(appPath, true); //удаление папки
 
-                foreach (SourceFile file in query)
+                using (var DB = new ApplicationDbContext())//удаление записей из базы
                 {
-                    DB.SourceFiles.Remove(file);
+                    var query = from SourceFile in DB.SourceFiles
+                                where SourceFile.User == User.Identity.Name
+                                select SourceFile;
+
+                    foreach (SourceFile file in query)
+                    {
+                        DB.SourceFiles.Remove(file);
+                    }
+                    DB.SaveChanges();
                 }
-
-                DB.SaveChanges();
-
-                //IEnumerable<SourceFile> f = UserFiles();
-                //List<SourceFile> Files = f.ToList();
-                //SourceFile sf = DB.SourceFiles.Find(User.Identity.Name);
-                //if (sf != null)
-                //{
-                //    DB.SourceFiles.Remove(sf);
-                //    DB.SaveChanges();
-                
             }
+            catch (Exception ex) { Label1.Text = ex.Message; }
         }
     }
 }

@@ -71,12 +71,12 @@
                                         <li><a href="/Account/Cabinet_AllFiles">Все файлы</a></li>
                                         <li><a href="/Account/Cabinet_UploadFiles">Загрузить файлы</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="#">Профиль</a></li>
+                                        <li><a href="/Account/Manage">Профиль</a></li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li><a runat="server" href="/Account/Cabinet" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Выход" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>

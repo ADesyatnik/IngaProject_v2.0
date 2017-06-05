@@ -4,7 +4,7 @@
      <h2><%: Title %>.</h2>
     <div>
         <h4>Добавить документ:</h4>
-        <asp:FileUpload ID="FileUpload1" runat="server" />
+        <asp:FileUpload ID="FileUpload1" runat="server" accept ="image/*, text/*" />
         <p><br>
             <asp:Button ID="Button1" runat="server" OnClick="UploadInDB" Text="Загрузить"  class="btn btn-default" />
             <asp:Label ID="UploadStatusLabel" runat="server"></asp:Label>
@@ -27,5 +27,7 @@
             <br>
         <asp:Button ID="Button2" runat="server" OnClick="UploadInProg" Text="Отправить на сборку" data-loading-text=«Загрузка…» class="btn btn-primary"/> &nbsp; <asp:Button ID="Button3" runat="server" OnClick="DelAllFileInDB" Text="Очистить"  class="btn btn-default" />
         <asp:Label ID="InProgramUploadStatusLabel" runat="server"></asp:Label>
+        <br />
+        <asp:Label ID="Label1" runat="server"></asp:Label>
     </div>
 </asp:Content>
