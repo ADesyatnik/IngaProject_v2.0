@@ -184,9 +184,11 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
-    <Content Include="Account\Cabinet.aspx" />
-    <Content Include="Account\Cabinet_AllFiles.aspx" />
-    <Content Include="Account\Cabinet_UploadFiles.aspx" />
+    <Content Include="Cabinet.aspx" />
+    <Content Include="Cabinet_AllFiles.aspx" />
+    <Content Include="Cabinet_UploadFiles.aspx">
+      <BrowseToURL>~/Cabinet_UploadFiles.aspx</BrowseToURL>
+    </Content>
     <Content Include="Account\Confirm.aspx" />
     <Content Include="Account\Forgot.aspx" />
     <Content Include="Account\Lockout.aspx" />
@@ -276,25 +278,25 @@
     <Compile Include="Account\AddPhoneNumber.aspx.designer.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Cabinet.aspx.cs">
+    <Compile Include="Cabinet.aspx.cs">
       <DependentUpon>Cabinet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\Cabinet.aspx.designer.cs">
+    <Compile Include="Cabinet.aspx.designer.cs">
       <DependentUpon>Cabinet.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Cabinet_AllFiles.aspx.cs">
+    <Compile Include="Cabinet_AllFiles.aspx.cs">
       <DependentUpon>Cabinet_AllFiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\Cabinet_AllFiles.aspx.designer.cs">
+    <Compile Include="Cabinet_AllFiles.aspx.designer.cs">
       <DependentUpon>Cabinet_AllFiles.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Cabinet_UploadFiles.aspx.cs">
+    <Compile Include="Cabinet_UploadFiles.aspx.cs">
       <DependentUpon>Cabinet_UploadFiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\Cabinet_UploadFiles.aspx.designer.cs">
+    <Compile Include="Cabinet_UploadFiles.aspx.designer.cs">
       <DependentUpon>Cabinet_UploadFiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\Confirm.aspx.cs">

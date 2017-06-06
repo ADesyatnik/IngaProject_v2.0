@@ -13,7 +13,8 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/favicon.ico" rel="shortcut icon" runat="server" type="image/x-icon"/>
+    <link href="/favicon.ico" rel="icon" runat="server" type="image/ico" />
 
 </head>
 <body>
@@ -67,16 +68,16 @@
                                 <li class="dropdown">
                                     <a href="/Account" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Личный кабинет <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/Account/Cabinet">Кабинет</a></li>
-                                        <li><a href="/Account/Cabinet_AllFiles">Все файлы</a></li>
-                                        <li><a href="/Account/Cabinet_UploadFiles">Загрузить файлы</a></li>
+                                        <li><a href="Cabinet">Кабинет</a></li>
+                                        <li><a href="Cabinet_AllFiles">Все файлы</a></li>
+                                        <li><a href="Cabinet_UploadFiles">Загрузить файлы</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="/Account/Manage">Профиль</a></li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="/Account/Cabinet" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li><a runat="server" href="Cabinet" title="Начать работу">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                                 <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Выход" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
