@@ -9,7 +9,7 @@
                
         <%
             var i = 0;
-            foreach (IngaProject.Models.ReadyFile file in DBFile())
+            foreach (IngaProject.Models.ReadyFile file in DBFile().Reverse())
             {
                 Response.Write(String.Format(@"
                             <div class='thumbnail'>

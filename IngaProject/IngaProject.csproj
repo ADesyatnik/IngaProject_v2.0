@@ -263,6 +263,18 @@
     <Content Include="Templates\otchet.zip" />
     <Content Include="Templates\referat.zip" />
     <Content Include="Templates\referat.pdf" />
+    <Content Include="Templates\diplom.pdf" />
+    <Content Include="Templates\kurs.pdf" />
+    <Content Include="Templates\kurs.zip" />
+    <Content Include="Templates\laba.pdf" />
+    <Content Include="Templates\laba.zip" />
+    <Content Include="Templates\otchet.pdf" />
+    <Content Include="Templates\publikaciya.pdf" />
+    <Content Include="Templates\publikaciya.zip" />
+    <Content Include="Templates\ireferat.docx" />
+    <Content Include="Templates\ipublic.docx" />
+    <Content Include="Templates\ikurs.docx" />
+    <Content Include="Templates\Instruktsia.docx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
